@@ -13,6 +13,7 @@ server.get('/', (request: Request, response: Response) => {
 })
 
 server.post('/user', userController.createUser)
+server.get('/user', userController.getAllUsers)
 
 //função do express recebendo a porta que vai rodar e a função que vai rodar
 server.listen(5000, () => console.log('Server on'))
