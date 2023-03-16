@@ -1,32 +1,27 @@
-import { UserService } from '../services/UserService';
 import { UserController } from './UserController';
-import { Params } from 'express-serve-static-core';
-import { Request, Response } from 'express';
+import { UserService } from '../services/UserService';
+import { Request } from 'express';
+import { makeMockResponse } from '../__mocks__/mockResponse.mock';
 
 describe('UserController', () => {
     //aqui mockamos userService para testar apenas a camada controller
     //com o Partial podemos mockar as propriedades que queremos
-    const mockUserService: Partial<UserService> = {}
+    const mockUserService: Partial<UserService> = {
+        createUser: jest.fn()
+    }
 
     //adicionamos o mockUserService para ele não chamar o UserService real
     const userController = new UserController(mockUserService as UserService);
-
-    //Aqui vamos mockar as class do express Request/Response
-    const makeMockRequest = (
-        {params, query}: { params?: Params, query?: Params }
-        ): Request
-        => {
-            const request = {
-                params: params || {},
-                query: query || {}
-            } as unknown
-
-            return request as Request;
-        }
-    
-
     it('Deve adicionar um novo usuário', () => {
-        const mockRequest = makeMockRequest({})
-        const response = userController.createUser(mockRequest)
+        const mockRequest = {
+            body: {
+                name: 'Joaquim',
+                email: 'joaquim@eamil.com'
+            }
+        } as Request
+        const mockResponse = makeMockResponse()
+        userController.createUser(mockRequest, mockResponse)
+        expect(mockResponse.state.status).toBe(201)
+        expect(mockResponse.state.json).toMatchObject({ message: 'Usuário criado' })
     })
 })
