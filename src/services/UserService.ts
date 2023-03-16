@@ -12,7 +12,7 @@ export class UserService{
             email
         }
         db.push(user)
-        //console.log("DB atualizado", db)
+        console.log("DB atualizado", db)
     }
 
     getAllUsers = () => {
