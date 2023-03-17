@@ -8,7 +8,8 @@ describe('UserController', () => {
     //com o Partial podemos mockar as propriedades que queremos
     const mockUserService: Partial<UserService> = {
         createUser: jest.fn(),
-        nameVerify: jest.fn()        
+        nameVerify: jest.fn(),        
+        getAllUsers: jest.fn()        
     }
 
     //adicionamos o mockUserService para ele não chamar o UserService real
@@ -41,6 +42,36 @@ describe('UserController', () => {
         userController.nameVerify(mockRequest, mockResponse)
         expect(mockResponse.state.status).toBe(422)
         
+    })
+    it('O usuário nâo pode ser criado caso não informe o email', () => {
+        
+
+        const mockRequest = {
+            body: {
+                name: 'Joao',
+                email: ''
+            }
+        } as Request
+        
+        const mockResponse = makeMockResponse()
+        userController.emailVerify(mockRequest, mockResponse)
+        expect(mockResponse.state.status).toBe(422)
+        
+    })
+    
+
+    it('Verificar se a função getAllusers está sendo chamada', () => {
+        const mockRequest = {
+            body: {
+                name: 'Isaac',
+                email: 'isaac@email.com'
+            }
+        } as Request
+        
+        const mockResponse = makeMockResponse()
+        userController.getAllUsers(mockRequest, mockResponse);
+
+        expect(mockResponse.state.status).toBe(200)
     })
     
 })

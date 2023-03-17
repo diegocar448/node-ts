@@ -37,5 +37,17 @@ export class UserController {
         return response.status(200).json({message: "Essa validação é para quando o campo não for preenchido"});
     }
 
+    emailVerify = (request: Request, response: Response) => {        
+        const user = request.body;        
+        
+        if (!user.email ) {
+            return response.status(422).json({message: "O campo email é obrigatório"});
+        }
+
+        this.userService.emailVerify(user.name, user.email)        
+        return response.status(200).json({message: "Essa validação é para quando o campo email não for preenchido"});
+    }
+    
+
     
 }

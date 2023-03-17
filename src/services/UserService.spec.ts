@@ -16,4 +16,17 @@ describe('UserService', () => {
         userService.nameVerify('', 'joao@email.com');
         expect(mockConsole).not.toBe(mockDb);
     })
+    it('O usuário nâo pode ser criado caso não informe o email', () => {
+        //mockando console.log com jest
+        const mockConsole = jest.spyOn(global.console, 'log')
+        userService.emailVerify('Joao', '');
+        expect(mockConsole).not.toBe(mockDb);
+    })
+
+
+    it('Verificar se a função getAllusers está sendo chamada', () => {
+        userService.getAllUsers();        
+        expect(mockDb);
+    })
+    
 })
