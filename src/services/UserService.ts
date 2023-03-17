@@ -32,4 +32,13 @@ export class UserService{
     getAllUsers = () => {
         return this.db;
     }
+
+    nameVerify = (name:string, email:string) => {
+        const user = {
+            name,
+            email
+        }
+        
+        console.log("Nome como nulo verificado", user)
+    }   
 }
