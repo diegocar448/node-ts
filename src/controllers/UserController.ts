@@ -25,4 +25,17 @@ export class UserController {
         const users = this.userService.getAllUsers()
         return response.status(200).json(users)
     }
+
+    nameVerify = (request: Request, response: Response) => {        
+        const user = request.body;        
+        
+        if (!user.name ) {
+            return response.status(422).json({message: "O campo nome é obrigatório"});
+        }
+
+        this.userService.nameVerify(user.name, user.email)        
+        return response.status(200).json({message: "Essa validação é para quando o campo não for preenchido"});
+    }
+
+    
 }
