@@ -40,5 +40,14 @@ export class UserService{
         }
         
         console.log("Nome como nulo verificado", user)
+    }
+
+    emailVerify = (name:string, email:string) => {
+        const user = {
+            name,
+            email
+        }
+        
+        console.log("Email como nulo verificado", user)
     }   
 }
