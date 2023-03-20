@@ -29,4 +29,11 @@ describe('UserService', () => {
         expect(mockDb);
     })
     
+    it('Rota para deletar usuários', () => {              
+        //mockando console.log com jest
+        const mockConsole = jest.spyOn(global.console, 'log')
+        userService.deleteUser('', 'reuven@email.com');
+        expect(mockConsole).not.toBe(mockDb);
+    })
+    
 })

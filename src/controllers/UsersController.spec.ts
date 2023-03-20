@@ -73,5 +73,17 @@ describe('UserController', () => {
 
         expect(mockResponse.state.status).toBe(200)
     })
+    it('Rota para deletar usuários', () => { 
+        const mockRequest = {
+            body: {
+                name: 'Reuven',
+                email: 'reuven@email.com'
+            }
+        } as Request
+        const mockResponse = makeMockResponse()
+        userController.deleteUser(mockRequest, mockResponse);
+        
+        expect(mockResponse.state.status).toBe(200)    
+    })
     
 })

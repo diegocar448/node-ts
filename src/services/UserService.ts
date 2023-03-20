@@ -49,5 +49,14 @@ export class UserService{
         }
         
         console.log("Email como nulo verificado", user)
-    }   
+    }
+
+    deleteUser = (name:string, email:string) => {
+        const user = {
+            name,
+            email
+        }
+        
+        console.log("Usuario deletado", user.name)
+    }
 }

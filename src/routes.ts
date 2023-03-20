@@ -7,8 +7,10 @@ export const router = Router()
 
 router.post('/user', userController.createUser)
 router.get('/user', userController.getAllUsers)
-router.delete('/user', (request:Request, response: Response) => {
+router.delete('/user', userController.deleteUser)
+
+/* router.delete('/user', (request:Request, response: Response) => {
     const user = request.body;
     console.log("Deletando usuario")
     return response.status(200).json({message: 'Usuario deletado'})
-})
+}) */
