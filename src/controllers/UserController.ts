@@ -48,7 +48,7 @@ export class UserController {
         return response.status(200).json({message: "Essa validação é para quando o campo email não for preenchido"});
     }
     deleteUser = (request: Request, response: Response) => {        
-        return this.userService.deleteUser(user.name, user.email)
+        
     }
     
 
